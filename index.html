@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixels.do | Cuestionario de Marca</title>
+  <meta name="description" content="Cuestionario de Pixels.do Graphic Desing para conocer la imagen comercial ideal de tu marca." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg-soft:#121a33;
+      --card:#11182d;
+      --line:rgba(255,255,255,.1);
+      --text:#f3f6ff;
+      --muted:#b3bfdc;
+      --accent:#7c3aed;
+      --accent-2:#22d3ee;
+      --ok:#22c55e;
+      --danger:#ef4444;
+      --shadow:0 20px 45px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1140px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124,58,237,.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(34,211,238,.14), transparent 24%),
+        linear-gradient(180deg, #0a0f1d 0%, #0b1020 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{
+      width:min(calc(100% - 32px), var(--max));
+      margin:0 auto;
+    }
+
+    .hero{
+      padding:72px 0 42px;
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.92rem;
+      backdrop-filter:blur(8px);
+    }
+
+    h1{
+      font-size:clamp(2.9rem, 7vw, 6.2rem);
+      line-height:.95;
+      letter-spacing:-.05em;
+      margin:18px 0 6px;
+      text-transform:lowercase;
+    }
+
+    .subtitle{
+      font-size:clamp(1.05rem, 2vw, 1.45rem);
+      color:var(--accent-2);
+      font-weight:700;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      margin:0 0 24px;
+    }
+
+    .lead{
+      max-width:860px;
+      color:var(--muted);
+      font-size:1.06rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:14px 20px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .btn.primary{
+      background:linear-gradient(135deg, var(--accent), #8b5cf6 50%, var(--accent-2));
+      color:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .grid{
+      display:grid;
+      gap:20px;
+    }
+
+    .services{
+      grid-template-columns:repeat(12,1fr);
+      margin:24px 0 34px;
+    }
+
+    .service-card{
+      grid-column:span 6;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .service-card::after{
+      content:"";
+      position:absolute;
+      width:120px;
+      height:120px;
+      right:-32px;
+      top:-32px;
+      background:radial-gradient(circle, rgba(124,58,237,.35), transparent 70%);
+      pointer-events:none;
+    }
+
+    .service-card h3{
+      margin:0 0 10px;
+      font-size:1.4rem;
+    }
+
+    .service-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .highlight{
+      color:#fff;
+      font-weight:700;
+    }
+
+    section{
+      padding:24px 0;
+    }
+
+    .section-title{
+      font-size:clamp(1.7rem, 4vw, 2.5rem);
+      margin:0 0 8px;
+      letter-spacing:-.03em;
+    }
+
+    .section-copy{
+      color:var(--muted);
+      margin:0 0 22px;
+      max-width:820px;
+    }
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:12px;
+    }
+
+    .info-box{
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      border-radius:var(--radius-sm);
+      padding:20px;
+    }
+
+    .info-box h4{
+      margin:0 0 10px;
+      font-size:1.05rem;
+    }
+
+    .info-box p{
+      margin:0;
+      color:var(--muted);
+      font-size:.98rem;
+    }
+
+    form{
+      margin-top:22px;
+    }
+
+    .form-shell{
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      font-weight:700;
+      font-size:.98rem;
+    }
+
+    input, textarea, select{
+      width:100%;
+      background:#0c1326;
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:16px;
+      padding:14px 16px;
+      font:inherit;
+      outline:none;
+      transition:border-color .2s ease, box-shadow .2s ease;
+    }
+
+    textarea{min-height:130px; resize:vertical}
+    input:focus, textarea:focus, select:focus{
+      border-color:rgba(34,211,238,.8);
+      box-shadow:0 0 0 4px rgba(34,211,238,.12);
+    }
+
+    .options{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .check{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      background:#0c1326;
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:18px;
+      padding:14px 16px;
+    }
+
+    .check input{
+      width:18px;
+      height:18px;
+      margin-top:2px;
+    }
+
+    .check strong{
+      display:block;
+      margin-bottom:2px;
+    }
+
+    .check span{
+      color:var(--muted);
+      font-size:.94rem;
+      line-height:1.45;
+    }
+
+    .summary-box{
+      margin-top:18px;
+      background:#0c1326;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .summary-box textarea{
+      min-height:260px;
+    }
+
+    .footer{
+      padding:36px 0 60px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .mini{
+      font-size:.88rem;
+      color:var(--muted);
+    }
+
+    .success{
+      color:var(--ok);
+      font-weight:700;
+    }
+
+    @media (max-width: 900px){
+      .service-card{grid-column:span 12}
+      .info-grid{grid-template-columns:1fr}
+      .form-grid{grid-template-columns:1fr}
+      .options{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="badge">Cuestionario creativo • Identidad visual • Brief de marca</div>
+      <h1>pixels</h1>
+      <p class="subtitle">Graphic Desing</p>
+      <p class="lead">
+        Bienvenido al cuestionario creativo de <span class="highlight">Pixels.do</span>. Este espacio fue diseñado para entender con claridad
+        cómo quieres que se vea tu imagen comercial, qué sensaciones debe provocar tu marca y qué elementos visuales te ayudarán a destacar.
+        Mientras más precisa sea tu información, más fuerte, coherente y profesional será el resultado.
+      </p>
+      <div class="hero-actions">
+        <a href="#cuestionario" class="btn primary">Empezar cuestionario</a>
+        <a href="#servicios" class="btn secondary">Ver opciones</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">La historia detrás de Pixels.do</h2>
+        <p class="section-copy">
+          <strong>Pixels.do</strong> nace en 2017 con una idea clara: crear diseños que impulsen emprendimientos. Su fundador, <strong>Maicol Arias</strong>,
+          apostó por una visión digital enfocada en ayudar marcas, tiendas online y emprendedores virtuales a verse profesionales, confiables y memorables.
+          Entre 2018 y 2019, esa visión tuvo un impacto notable en ventas y posicionamiento, gracias a publicaciones visuales de alta calidad que transmitían
+          seguridad, seriedad y valor.
+        </p>
+        <p class="section-copy">
+          Una marca no solo vende un producto: vende la percepción que genera. Así como una buena presentación personal transmite presencia,
+          una identidad visual bien construida proyecta confianza y deseo. En redes sociales, muchas veces no gana lo que es simplemente bueno;
+          gana lo que mejor se ve, lo que mejor conecta y lo que deja huella. Cuando un buen producto se combina con una presentación visual potente,
+          el crecimiento de la marca se acelera.
+        </p>
+        <p class="section-copy">
+          En Pixels.do creemos en crear imágenes únicas que produzcan impacto real en el cliente. Una experiencia visual bien trabajada puede cambiar por completo
+          la manera en que una persona percibe un negocio. Desde un logo hasta un sistema visual completo, cada detalle comunica. Ese es el poder del diseño:
+          hacer que tu marca se sienta seria, atractiva, diferente y digna de ser recordada.
+        </p>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="wrap">
+        <h2 class="section-title">Elige el tipo de proyecto que necesitas</h2>
+        <p class="section-copy">
+          Estas son dos de las rutas más importantes para construir una marca sólida. Puedes seleccionar una o ambas dentro del cuestionario.
+        </p>
+
+        <div class="grid services">
+          <article class="service-card">
+            <h3>Logo</h3>
+            <p>
+              Un <span class="highlight">logo</span> es el símbolo, nombre o combinación visual que identifica tu marca.
+              Debe representar la esencia de tu negocio, diferenciarte de la competencia y transmitir lo que quieres que las personas sientan
+              al verte: confianza, profesionalismo, energía, elegancia, cercanía o autoridad. Un buen logo no solo se ve bonito:
+              <span class="highlight">resume la personalidad de tu marca en una forma memorable</span>.
+            </p>
+          </article>
+
+          <article class="service-card">
+            <h3>Branding</h3>
+            <p>
+              El <span class="highlight">branding</span> es la construcción completa de la identidad de una marca.
+              Va más allá del logo: define colores, tipografías, estilo visual, tono, personalidad y la forma en que tu negocio se presenta al mundo.
+              Un branding fuerte crea recordación, eleva la percepción de valor y hace que tu marca se vea más seria, coherente y lista para crecer.
+              <span class="highlight">Un buen branding puede impulsar ventas, credibilidad y posicionamiento</span>.
+            </p>
+          </article>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <h4>¿Qué debe transmitir tu logo?</h4>
+            <p>Debe expresar quién eres, a quién le vendes y qué hace especial tu negocio. Tiene que sentirse claro, auténtico y fácil de recordar.</p>
+          </div>
+          <div class="info-box">
+            <h4>¿Qué impacto crea el branding?</h4>
+            <p>Hace que tu marca se vea más profesional, genera confianza y te ayuda a destacar en redes sociales, publicidad y cualquier punto de contacto.</p>
+          </div>
+          <div class="info-box">
+            <h4>¿Por qué importa la imagen comercial?</h4>
+            <p>Porque las personas primero perciben, luego valoran y finalmente compran. La imagen correcta puede abrir la puerta antes de que hables.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cuestionario">
+      <div class="wrap">
+        <h2 class="section-title">Cuestionario creativo de marca</h2>
+        <p class="section-copy">
+          Completa este brief para que podamos entender mejor tu negocio, tu estilo y el impacto visual que deseas crear.
+        </p>
+
+        <form id="brandForm" class="form-shell">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nombre">Nombre del cliente</label>
+              <input id="nombre" name="nombre" type="text" placeholder="Ej. Juan Pérez" required />
+            </div>
+
+            <div class="field">
+              <label for="negocio">Nombre del negocio o marca</label>
+              <input id="negocio" name="negocio" type="text" placeholder="Ej. Café Nova" required />
+            </div>
+
+            <div class="field full">
+              <label>¿Qué servicio necesitas?</label>
+              <div class="options">
+                <label class="check">
+                  <input type="checkbox" name="servicio" value="Logo" />
+                  <div>
+                    <strong>Logo</strong>
+                    <span>Identidad principal visual de tu negocio.</span>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" name="servicio" value="Branding" />
+                  <div>
+                    <strong>Branding</strong>
+                    <span>Sistema visual completo para fortalecer la percepción de tu marca.</span>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" name="servicio" value="Redes Sociales" />
+                  <div>
+                    <strong>Diseño para redes sociales</strong>
+                    <span>Plantillas, publicaciones o línea visual para Instagram, TikTok o Facebook.</span>
+                  </div>
+                </label>
+                <label class="check">
+                  <input type="checkbox" name="servicio" value="Flyer / Publicidad" />
+                  <div>
+                    <strong>Flyer / Publicidad</strong>
+                    <span>Piezas promocionales para campañas, eventos u ofertas.</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="rubro">¿A qué se dedica tu negocio?</label>
+              <input id="rubro" name="rubro" type="text" placeholder="Ej. Ropa urbana, restaurante, belleza..." />
+            </div>
+
+            <div class="field">
+              <label for="publico">¿Quién es tu público objetivo?</label>
+              <input id="publico" name="publico" type="text" placeholder="Ej. Jóvenes de 18 a 30 años" />
+            </div>
+
+            <div class="field">
+              <label for="personalidad">¿Cómo quieres que se perciba tu marca?</label>
+              <select id="personalidad" name="personalidad">
+                <option value="">Selecciona una opción</option>
+                <option>Elegante y premium</option>
+                <option>Moderna y tecnológica</option>
+                <option>Minimalista y limpia</option>
+                <option>Creativa y atrevida</option>
+                <option>Seria y corporativa</option>
+                <option>Cercana y amigable</option>
+                <option>Juvenil y enérgica</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="objetivo">¿Qué quieres lograr con este diseño?</label>
+              <input id="objetivo" name="objetivo" type="text" placeholder="Ej. Vender más, verme profesional, lanzar una marca..." />
+            </div>
+
+            <div class="field">
+              <label for="colores">Colores preferidos</label>
+              <input id="colores" name="colores" type="text" placeholder="Ej. Negro, dorado y blanco" />
+            </div>
+
+            <div class="field">
+              <label for="evitar">Colores o estilos que NO te gustan</label>
+              <input id="evitar" name="evitar" type="text" placeholder="Ej. No quiero tonos neón ni algo infantil" />
+            </div>
+
+            <div class="field full">
+              <label for="historia">Cuéntame brevemente la historia de tu negocio</label>
+              <textarea id="historia" name="historia" placeholder="¿Cómo surgió? ¿Qué te motivó a crear esta marca?"></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="valores">¿Qué debe transmitir tu marca?</label>
+              <textarea id="valores" name="valores" placeholder="Ej. Confianza, calidad, lujo, seguridad, frescura, exclusividad..."></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="referencias">Referencias visuales o marcas que te inspiran</label>
+              <textarea id="referencias" name="referencias" placeholder="Puedes escribir nombres de marcas, estilos, links o ideas que te gusten."></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="extras">Detalles adicionales</label>
+              <textarea id="extras" name="extras" placeholder="Escribe cualquier detalle importante que debamos tomar en cuenta."></textarea>
+            </div>
+          </div>
+
+          <div class="hero-actions" style="margin-top:20px;">
+            <button type="button" class="btn primary" id="generateBtn">Generar resumen</button>
+            <button type="button" class="btn secondary" id="copyBtn">Copiar resumen</button>
+            <button type="reset" class="btn secondary">Limpiar</button>
+          </div>
+
+          <div class="summary-box">
+            <label for="summary">Resumen listo para enviar</label>
+            <textarea id="summary" placeholder="Aquí aparecerá el resumen del cuestionario..."></textarea>
+            <p class="mini" id="status">Completa el formulario y pulsa <strong>Generar resumen</strong>.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      Pixels.do • Cuestionario creativo de marca para GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('brandForm');
+    const summary = document.getElementById('summary');
+    const statusEl = document.getElementById('status');
+    const generateBtn = document.getElementById('generateBtn');
+    const copyBtn = document.getElementById('copyBtn');
+
+    function getCheckedValues(name){
+      return [...document.querySelectorAll(`input[name="${name}"]:checked`)].map(el => el.value);
+    }
+
+    function field(id){
+      return document.getElementById(id)?.value?.trim() || "No especificado";
+    }
+
+    function buildSummary(){
+      const servicios = getCheckedValues('servicio');
+      const text = [
+        "BRIEF CREATIVO • PIXELS.DO",
+        "",
+        `Nombre del cliente: ${field('nombre')}`,
+        `Negocio / Marca: ${field('negocio')}`,
+        `Servicio solicitado: ${servicios.length ? servicios.join(', ') : 'No especificado'}`,
+        `Rubro: ${field('rubro')}`,
+        `Público objetivo: ${field('publico')}`,
+        `Personalidad deseada: ${field('personalidad')}`,
+        `Objetivo principal: ${field('objetivo')}`,
+        `Colores preferidos: ${field('colores')}`,
+        `Colores o estilos a evitar: ${field('evitar')}`,
+        "",
+        `Historia del negocio: ${field('historia')}`,
+        "",
+        `Lo que debe transmitir la marca: ${field('valores')}`,
+        "",
+        `Referencias visuales: ${field('referencias')}`,
+        "",
+        `Detalles adicionales: ${field('extras')}`
+      ].join("\n");
+
+      summary.value = text;
+      statusEl.innerHTML = '<span class="success">Resumen generado correctamente.</span>';
+      localStorage.setItem('pixelsdo_summary', text);
+    }
+
+    generateBtn.addEventListener('click', buildSummary);
+
+    copyBtn.addEventListener('click', async () => {
+      if(!summary.value.trim()){
+        buildSummary();
+      }
+      try{
+        await navigator.clipboard.writeText(summary.value);
+        statusEl.innerHTML = '<span class="success">Resumen copiado al portapapeles.</span>';
+      }catch(e){
+        statusEl.textContent = 'No se pudo copiar automáticamente. Selecciona el texto y cópialo manualmente.';
+      }
+    });
+
+    form.addEventListener('reset', () => {
+      setTimeout(() => {
+        summary.value = '';
+        statusEl.innerHTML = 'Formulario limpio. Completa el formulario y pulsa <strong>Generar resumen</strong>.';
+        localStorage.removeItem('pixelsdo_summary');
+      }, 0);
+    });
+
+    const savedSummary = localStorage.getItem('pixelsdo_summary');
+    if(savedSummary){
+      summary.value = savedSummary;
+      statusEl.innerHTML = '<span class="success">Se restauró el último resumen guardado en este navegador.</span>';
+    }
+  </script>
+</body>
+</html>
